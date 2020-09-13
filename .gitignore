@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# ide
+*iml
+
 # dependencies
 /node_modules
 /.pnp
@@ -10,6 +13,9 @@
 
 # production
 /build
+
+# terraform
+.terraform
 
 # misc
 .DS_Store
