@@ -1,11 +1,5 @@
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-} from 'recoil';
-import {isEmpty} from 'lodash'
+import { atom, selector } from 'recoil';
+import { isEmpty } from 'lodash';
 
 export const accountAtom = atom({
     key: 'account',
@@ -14,15 +8,15 @@ export const accountAtom = atom({
 
 export const accountState = selector({
     key: 'accountState',
-    get: ({get}) => {
+    get: ({ get }) => {
         const user = get(accountAtom);
         if (!isEmpty(user)) {
             return {
-                "name": user.getBasicProfile().getName(),
-                "idToken": user.getAuthResponse().id_token,
-            }
+                name: user.getBasicProfile().getName(),
+                idToken: user.getAuthResponse().id_token,
+            };
         } else {
-            return {}
+            return {};
         }
     },
 });
