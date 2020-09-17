@@ -5,6 +5,7 @@ import GoogleSignIn from './component/GoogleSignIn';
 import { useRecoilValue } from 'recoil';
 import { accountState } from './atoms/account';
 import { isEmpty } from 'lodash';
+import DataDashboard from './component/DataDashboard';
 
 function App() {
     const account = useRecoilValue(accountState);
@@ -30,7 +31,12 @@ function LoggedOutApp() {
 function LoggedInApp() {
     const account = useRecoilValue(accountState);
 
-    return <div>Welcome {account.name}!</div>;
+    return (
+        <>
+            <div>Welcome {account.profile.name}!</div>
+            <DataDashboard />
+        </>
+    );
 }
 
 export default App;

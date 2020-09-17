@@ -11,10 +11,16 @@ export const accountState = selector({
     get: ({ get }) => {
         const user = get(accountAtom);
         if (!isEmpty(user)) {
-            return {
-                name: user.getBasicProfile().getName(),
+            const profile = user.getBasicProfile();
+            const ret = {
+                profile: {
+                    name: profile.getName(),
+                    email: profile.getEmail(),
+                },
                 idToken: user.getAuthResponse().id_token,
             };
+            console.log('account state', ret);
+            return ret;
         } else {
             return {};
         }
