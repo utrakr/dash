@@ -22,6 +22,7 @@ export const visitsQuery = selector({
                 }),
             }
         );
+
         if (resp.status === 200) {
             const data = await resp.json();
             console.log('json', data);
