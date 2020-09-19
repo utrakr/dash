@@ -1,13 +1,27 @@
 import { selector } from 'recoil';
 import config from '../config';
 import { accountState } from './account';
+import { DateTime } from 'luxon';
 
 export const visitsQuery = selector({
     key: 'visitsQuery',
     get: async ({ get }) => {
-        const email = get(accountState).profile.email;
-        console.log('email', email);
-        const resp = await fetch(`${config.api}/api/views?` + new URLSearchParams({ email }));
+        const idToken = get(accountState).idToken;
+        const toDate = DateTime.utc().startOf('day').plus({ days: 1 });
+        const fromDate = toDate.minus({ months: 3 });
+
+        const resp = await fetch(
+            `${config.api}/api/views?` +
+                new URLSearchParams({
+                    fromDate: fromDate.toISO(),
+                    toDate: toDate.toISO(),
+                }),
+            {
+                headers: new Headers({
+                    Authorization: `Bearer ${idToken}`,
+                }),
+            }
+        );
         if (resp.status === 200) {
             const data = await resp.json();
             console.log('json', data);
