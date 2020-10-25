@@ -2,7 +2,6 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { visitsQuery } from '../atoms/visits';
 import { VegaLite, VisualizationSpec } from 'react-vega';
-import { cloneDeep } from 'lodash';
 
 function DataDashboard() {
     return (
