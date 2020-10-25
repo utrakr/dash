@@ -4,6 +4,7 @@ import { accountState } from './account';
 import { DateTime } from 'luxon';
 
 export const visitsQuery = selector({
+    dangerouslyAllowMutability: true, // vega https://github.com/facebookexperimental/Recoil/issues/299 https://github.com/vega/vega/issues/2705
     key: 'visitsQuery',
     get: async ({ get }) => {
         const idToken = get(accountState).idToken;

@@ -11,7 +11,10 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-scripts": "3.4.3",
+        "react-vega": "^7.4.1",
         "recoil": "0.0.13",
+        "vega": "^5.17.0",
+        "vega-lite": "^4.17.0",
         "whatwg-fetch": "^3.4.1"
     },
     "proxy": "http://localhost:8080",
