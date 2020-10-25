@@ -14,6 +14,9 @@ function DataDashboard() {
 
 function VisitsData() {
     const visits = useRecoilValue(visitsQuery);
+
+    // visits graph information
+    const data = visits.data;
     const spec: VisualizationSpec = {
         data: { name: 'rows' },
         encoding: {
@@ -26,7 +29,7 @@ function VisitsData() {
     return (
         <>
             <div>Data</div>
-            <VegaLite spec={spec} data={visits.data} />
+            <VegaLite spec={spec} data={data} />
         </>
     );
 }
