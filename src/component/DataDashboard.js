@@ -15,20 +15,20 @@ function VisitsData() {
     const visits = useRecoilValue(visitsQuery);
 
     // visits graph information
-    const data = visits.data;
+    const { data, request } = visits;
     const spec: VisualizationSpec = {
         data: { name: 'rows' },
         encoding: {
-            x: { field: 'date', type: 'ordinal' },
-            y: { field: 'views', type: 'quantitative' },
+            x: { field: 'date', type: 'temporal', scale: { domain: [request.toDate, request.fromDate] } },
+            y: { field: 'views', type: 'quantitative', aggregate: 'sum' },
         },
-        mark: 'bar',
+        mark: { type: 'bar', tooltip: true },
     };
 
     return (
         <>
             <div>Data</div>
-            <VegaLite spec={spec} data={data} />
+            <VegaLite spec={spec} data={data} actions={false} />
         </>
     );
 }
